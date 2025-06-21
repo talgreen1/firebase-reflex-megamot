@@ -107,13 +107,31 @@ def student_subjects() -> rx.Component:
                 is_loading=State.loading,  # Disable button while loading
             ),
             rx.cond(State.error != "", rx.text(State.error, color="red")),
+            # Animated subject 1 (CSS fade-in)
             rx.cond(
                 (State.subj_1 != ""),
-                rx.text("מקצוע 1: " + State.subj_1, size="4", color="green"),
+                rx.text(
+                    "מקצוע 1: " + State.subj_1,
+                    size="4",
+                    color="green",
+                    style={
+                        "opacity": 1,
+                        "transition": "opacity 0.5s",
+                    },
+                ),
             ),
+            # Animated subject 2 (CSS fade-in with delay)
             rx.cond(
                 (State.subj_2 != ""),
-                rx.text("מקצוע 2: " + State.subj_2, size="4", color="green"),
+                rx.text(
+                    "מקצוע 2: " + State.subj_2,
+                    size="4",
+                    color="green",
+                    style={
+                        "opacity": 1,
+                        "transition": "opacity 0.5s 0.2s",
+                    },
+                ),
             ),
             spacing="4",
             align_items="center",
