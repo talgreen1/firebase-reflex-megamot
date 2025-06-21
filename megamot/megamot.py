@@ -24,6 +24,7 @@ class State(rx.State):
     subj_1: str = ""
     subj_2: str = ""
     error: str = ""
+    loading: bool = False
 
     def set_student_id(self, value: str):
         self.student_id = value
@@ -32,11 +33,13 @@ class State(rx.State):
         self.subj_2 = ""
 
     def fetch_subjects(self):
+        self.loading = True
         self.error = ""
         self.subj_1 = ""
         self.subj_2 = ""
         if not self.student_id:
             self.error = "נא להזין תעודת זהות."
+            self.loading = False
             return
         try:
             doc_ref = db.collection("Students").document(self.student_id)
@@ -51,6 +54,7 @@ class State(rx.State):
                 self.error = "תלמיד/ה לא נמצא/ה."
         except Exception as e:
             self.error = f"שגיאה: {e}"
+        self.loading = False
 
     def on_key_down(self, e):
         # Reflex passes the event as a string (the key pressed), not a dict
@@ -96,7 +100,12 @@ def student_subjects() -> rx.Component:
                 width="300px",
                 dir="rtl",
             ),
-            rx.button("חפש", on_click=State.fetch_subjects, width="100px"),
+            rx.button(
+                "חפש",
+                on_click=State.fetch_subjects,
+                width="100px",
+                is_loading=State.loading,  # Disable button while loading
+            ),
             rx.cond(State.error != "", rx.text(State.error, color="red")),
             rx.cond(
                 (State.subj_1 != ""),
