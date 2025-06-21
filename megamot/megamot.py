@@ -53,7 +53,8 @@ class State(rx.State):
             self.error = f"שגיאה: {e}"
 
     def on_key_down(self, e):
-        if e["key"] == "Enter":
+        # Reflex passes the event as a string (the key pressed), not a dict
+        if e == "Enter":
             self.fetch_subjects()
 
 
