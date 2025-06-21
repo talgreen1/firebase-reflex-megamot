@@ -16,7 +16,11 @@ def admin_menu():
         rx.cond(
             State.show_menu,
             rx.box(
-                rx.button("upload csv", size="2", variant="ghost"),
+                rx.upload(
+                    rx.button("upload csv", size="1", variant="ghost", width="6em", height="2em", font_size="0.8em", padding="0.2em 0.5em"),
+                    accept=".csv",
+                    max_files=1
+                ),
                 box_shadow="md",
                 border="1px solid #e2e8f0",
                 border_radius="md",
