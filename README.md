@@ -59,4 +59,37 @@ pip install -r requirements.txt
 - Validates the CSV schema.
 - Uploads data to the specified Firestore collection.
 - Handles collection override logic as described above.
-- 
+
+
+## Deployment Instructions (for Reflex Web App)
+
+If your project includes a web frontend built using [Reflex (formerly Pynecone)](https://reflex.dev/), follow these steps to deploy it for free:
+
+### 1. Deploy to Reflex Hosting (Free)
+
+```bash
+reflex deploy
+````
+
+This will:
+
+* Build and deploy your app to `https://<your-app-name>.reflex.site`
+* Provide HTTPS and a public link automatically
+
+### 2. Optional: Self-Hosting with Render or Railway
+
+If you'd rather host the app yourself:
+
+```bash
+reflex export
+```
+
+Then deploy the exported app to:
+
+* [Render.com](https://render.com) — deploy backend and frontend services
+* [Railway.app](https://railway.app) — deploy full-stack app easily
+* [Vercel](https://vercel.com) / [Netlify](https://www.netlify.com) — for frontend only
+
+Note: Backend must be deployed separately if you use Vercel or Netlify.
+ 
+
