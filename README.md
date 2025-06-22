@@ -59,3 +59,4 @@ pip install -r requirements.txt
 - Validates the CSV schema.
 - Uploads data to the specified Firestore collection.
 - Handles collection override logic as described above.
+- 
